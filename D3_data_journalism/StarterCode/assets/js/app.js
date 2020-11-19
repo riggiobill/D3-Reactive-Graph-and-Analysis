@@ -65,14 +65,83 @@ function makeResponsive() {
 
             chartGroup.append("g")
                 .call(yAxis);
-                
-            // declare and fill out attribute for CircleGroup
 
+            // declare and fill out attribute for CircleGroup
+            circlesGroup = chartGroup.selectAll("circle")
+                .data(varData)
+                .enter()
+                .append("circle")
+                .attr("cx", d => xLinearScale(d.poverty))
+                .attr("cy", d => yLinearScale(d.healthcare))
+                .attr("r", 10)
+                .attr("fill", "lightblue")
+                .attr("opacity", ".6")
+                .attr("stroke-width", "1")
+                .attr("stroke", "black");
+
+            chartGroup.select("g")
+                .selectAll("circle")
+                .data(varData)
+                .enter()
+                .append("text")
+                .text(d => d.abbr)
+                .attr("x", d => xLinearScale(d.poverty))
+                .attr("y", d => yLinearScale(d.healthcare))
+                .attr("dy",-395)
+                .attr("text-anchor", "middle")
+                .attr("font-size", "12px")
+                .attr("fill", "black");
+     
+        console.log(varData);
+
+
+
+        // Labels for chart
+        chartGroup.append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 0 - 50)
+            .attr("x", 0 -250)
+            .attr("dy", "1em")
+            .attr("class", "axisText")
+            .text("Healthcare Lack Percent");
+
+        chartGroup.append("text")
+            .attr("transform", `translate(${width / 2.5}, ${height + margin.top + 25})`)
+            .attr("class", "axisText")
+            .text("Poverty Percent");
+
+        //tooltip material
+        var toolTip = d3.select("body").append("div")
+          .attr("class", "tooltip");
+
+        circlesGroup
+            .on("mouseover", function(data) {
+            toolTip.style("display", "block");
+            toolTip.text(d=> d.abbr);
+            })
+                    
+            .on("mouseout", function() {
+            toolTip.style("display", "none");
+            });
+
+
+
+
+
+
+
+
+        
     
 
 
-
+        });
 
 }
-
+// When the browser loads, makeResponsive() is called.
 makeResponsive();
+
+
+// When the browser window is resized, 
+// makeResponsive() is called.
+d3.select(window).on("resize", makeResponsive);
