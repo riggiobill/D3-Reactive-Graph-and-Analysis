@@ -20,13 +20,37 @@ function makeResponsive() {
     height = svgHeight - margin.top - margin.bottom;
 
     // SVG wrapper creation and attribute preparation for svg group
+    svg = d3.select("#scatter")
+        .append("svg")
+        .attr("width", svgWidth)
+        .attr("height", svgHeight);
 
+    chartGroup = svg.append("g")
+        .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
     // Use D3.csv and .then to extract data from data.csv
 
-    // Format strings and numbers
+    d3.csv("assets/data/data.csv")
+        .then(function(varData){
 
-    // Create scale for X and Y values
+        // Format strings and numbers
+        varData.forEach(function(data) {
+            data.age = +data.age;
+            data.smokes = +data.smokes;
+            data.healthcare = +data.healthcare;
+            data.poverty = +data.poverty;
+            data.abbr = data.abbr;
+            data.income = +data.income;
+        });
+
+        // Create scale for X and Y values
+        xLinearScale = d3.scaleLinear()
+            .domain([8.5, d3.max(varData, d => d.poverty)])
+            .range([0, width]);
+
+        yLinearScale = d3.scaleLinear()
+            .domain([3.5, d3.max(varData, d => d.healthcare)])
+            .range([height, 0]);
 
 
 
