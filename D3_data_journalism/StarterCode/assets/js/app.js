@@ -99,7 +99,7 @@ function makeResponsive() {
                 .attr("fill", "black");
      
         
-        console.log(varData);
+        //console.log(varData);
 
 
 
@@ -118,33 +118,27 @@ function makeResponsive() {
             .text("Poverty Percent");
 
         //attempt at tooltip material
-        var toolTip = d3.select("body")
-            .append("div")
-            .classed("tooltip", true);
 
-        circlesGroup
-            .on("mouseover", function(d) {
-                toolTip.html(d.abbr)	
-                .style("left", (d3.event.pageX) + "px")		
-                .style("top", (d3.event.pageY - 28) + "px");
-                console.log(d.abbr)
-            })
-                    
-            .on("mouseout", function() {
-                toolTip.transition()		
-                .duration(500)		
-                .style("opacity", 0);
+        var toolTip = d3.tip()
+            .attr("class", "tooltip")
+            .offset([0,10])
+            .style("background", "#000")
+            .style("color", "white")
+            .style("padding","10px")
+            .html(function(d) {
+                return (`${d.abbr}`);
             });
 
+        chartGroup.call(toolTip);
 
+        circlesGroup
+            .on("mouseover",function(data) {
+            toolTip.show(data,this);
+            })
 
-
-
-
-
-
-        
-    
+            .on("mouseout", function(data,index){
+                toolTip.hide(data);
+            });
 
 
         });
