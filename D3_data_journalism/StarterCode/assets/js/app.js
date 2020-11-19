@@ -33,34 +33,42 @@ function makeResponsive() {
     d3.csv("assets/data/data.csv")
         .then(function(varData){
 
-        // Format strings and numbers
-        varData.forEach(function(data) {
-            data.age = +data.age;
-            data.smokes = +data.smokes;
-            data.healthcare = +data.healthcare;
-            data.poverty = +data.poverty;
-            data.abbr = data.abbr;
-            data.income = +data.income;
-        });
+            // Format strings and numbers
+            varData.forEach(function(data) {
+                data.age = +data.age;
+                data.smokes = +data.smokes;
+                data.healthcare = +data.healthcare;
+                data.poverty = +data.poverty;
+                data.abbr = data.abbr;
+                data.income = +data.income;
+            });
 
-        // Create scale for X and Y values
-        xLinearScale = d3.scaleLinear()
-            .domain([8.5, d3.max(varData, d => d.poverty)])
-            .range([0, width]);
+            // Create scale for X and Y values
+            xLinearScale = d3.scaleLinear()
+                .domain([8.5, d3.max(varData, d => d.poverty)])
+                .range([0, width]);
 
-        yLinearScale = d3.scaleLinear()
-            .domain([3.5, d3.max(varData, d => d.healthcare)])
-            .range([height, 0]);
+            yLinearScale = d3.scaleLinear()
+                .domain([3.5, d3.max(varData, d => d.healthcare)])
+                .range([height, 0]);
 
 
 
-    // Create axes
+            // Create axes
+            xAxis = d3.axisBottom(xLinearScale);
+            yAxis = d3.axisLeft(yLinearScale);
 
-    // Append axis to ChartGroup
+            // Append axis to ChartGroup
+            chartGroup.append("g")
+                .attr("transform", `translate(0, ${height})`)
+                .call(xAxis);
 
-    // declare and fill out attribute for CircleGroup
+            chartGroup.append("g")
+                .call(yAxis);
+                
+            // declare and fill out attribute for CircleGroup
 
-    // Make and append labels for chart
+    
 
 
 
