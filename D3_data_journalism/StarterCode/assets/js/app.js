@@ -3,6 +3,12 @@
 
 function makeResponsive() {
 
+    var svgArea = d3.select("body").select("svg");
+    if (!svgArea.empty()) {
+        svgArea.remove();
+    }
+
+    
 
     // Margin and SVG initialization
 
@@ -92,6 +98,7 @@ function makeResponsive() {
                 .attr("font-size", "12px")
                 .attr("fill", "black");
      
+        
         console.log(varData);
 
 
@@ -110,18 +117,23 @@ function makeResponsive() {
             .attr("class", "axisText")
             .text("Poverty Percent");
 
-        //tooltip material
-        var toolTip = d3.select("body").append("div")
-          .attr("class", "tooltip");
+        //attempt at tooltip material
+        var toolTip = d3.select("body")
+            .append("div")
+            .classed("tooltip", true);
 
         circlesGroup
-            .on("mouseover", function(data) {
-            toolTip.style("display", "block");
-            toolTip.text(d=> d.abbr);
+            .on("mouseover", function(d) {
+                toolTip.html(d.abbr)	
+                .style("left", (d3.event.pageX) + "px")		
+                .style("top", (d3.event.pageY - 28) + "px");
+                console.log(d.abbr)
             })
                     
             .on("mouseout", function() {
-            toolTip.style("display", "none");
+                toolTip.transition()		
+                .duration(500)		
+                .style("opacity", 0);
             });
 
 
