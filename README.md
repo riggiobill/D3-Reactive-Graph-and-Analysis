@@ -1,14 +1,19 @@
-# D3 Homework - Data Journalism and D3
+# D3-Reactive-Graph-and-Analysis
 
-![Newsroom](https://media.giphy.com/media/v2xIous7mnEYg/giphy.gif)
+![alt text](https://github.com/riggiobill/D3-Reactive-Graph-and-Analysis/blob/main/D3_data_journalism/Images/Screenshots/D3_Screenshot_1.jpg?raw=true)
+
+![alt text](https://github.com/riggiobill/D3-Reactive-Graph-and-Analysis/blob/main/D3_data_journalism/Images/Screenshots/D3_Screenshot_2.jpg?raw=true)
 
 ## Background
 
-Welcome to the newsroom! You've just accepted a data visualization position for a major metro paper. You're tasked with analyzing the current trends shaping people's lives, as well as creating charts, graphs, and interactive elements to help readers understand your findings.
+The D3 Reactive Graph and Analysis was a task aimed at analyzing the current trends shaping people's lives - as well as creating charts, graphs, and interactive elements to help readers understand your findings.
 
-The editor wants to run a series of feature stories about the health risks facing particular demographics. She's counting on you to sniff out the first story idea by sifting through information from the U.S. Census Bureau and the Behavioral Risk Factor Surveillance System.
+ To resolve this, this project utilized D3, HTML, Javascript, and an SVG-ChartGroup schema to identify and represent correlations about the health risks facing particular demographics. Sifting through information from the U.S. Census Bureau and the Behavioral Risk Factor Surveillance System allowed for the program to acquire real data and process it for valuable information - in particular the graph above focuses on Poverty versus level of Healthcare.
 
 The data set included with the assignment is based on 2014 ACS 1-year estimates: [https://factfinder.census.gov/faces/nav/jsf/pages/searchresults.xhtml](https://factfinder.census.gov/faces/nav/jsf/pages/searchresults.xhtml), but you are free to investigate a different data set. The current data set includes data on rates of income, obesity, poverty, etc. by state. MOE stands for "margin of error."
+
+D3 allows the graph to resize itself dynamically and it provides event-handling for mouse-over events. Given more time for further developments this provides an easy framework for on-click events, on-drag events, and mouse-off events. Additionally, an analysis is provided at the bottom of the page.
+
 
 ### Before You Begin
 
@@ -22,11 +27,10 @@ The data set included with the assignment is based on 2014 ACS 1-year estimates:
 
 5. Push the above changes to GitHub or GitLab.
 
-## Your Task
 
-### Core Assignment: D3 Dabbler (Required Assignment)
 
-![4-scatter](Images/4-scatter.jpg)
+### Core Assignment
+
 
 You need to create a scatter plot between two of the data variables such as `Healthcare vs. Poverty` or `Smokers vs. Age`.
 
@@ -39,26 +43,7 @@ Using the D3 techniques we taught you in class, create a scatter plot that repre
 * Note: You'll need to use `python -m http.server` to run the visualization. This will host the page at `localhost:8000` in your web browser.
 
 
-
 - - -
-
-### Assessment
-
-Your final product will be assessed on the following metrics:
-
-* Creation of a **new** repository on GitHub called `D3-Challenge` (note the kebab-case). Do not add to an already existing repo.
-
-* Completion of all steps in the core assignment
-
-* Coherency of scatter plot (labels, ticks)
-
-* Visual attraction
-
-* Professionalism
-
-* Ensure your repository has regular commits (i.e. 20+ commits) and a thorough README.md file
-
-**Good luck!**
 
 ### Copyright
 
